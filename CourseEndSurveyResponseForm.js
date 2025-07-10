@@ -15,7 +15,6 @@ const CourseEndSurveyResponseSchema = new mongoose.Schema({
   }
 });
 
-// prevent same student from submitting twice
 CourseEndSurveyResponseSchema.index({ survey_form_id: 1, student_rollno: 1 }, { unique: true });
 
 module.exports = mongoose.model('CourseEndSurveyResponse', CourseEndSurveyResponseSchema);
