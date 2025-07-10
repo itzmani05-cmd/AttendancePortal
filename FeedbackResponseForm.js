@@ -1,0 +1,25 @@
+const mongoose = require('mongoose');
+
+const FeedbackResponseSchema = new mongoose.Schema({
+  feedback_form_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'FeedbackForm',
+    required: true
+  },
+  student_rollno: {
+    type: String,
+    required: true,
+    ref: 'Student'
+  },
+  submitted_on: {
+    type: Date,
+    default: Date.now
+  }
+});
+
+FeedbackResponseSchema.index({ 
+    feedback_form_id: 1,
+    student_rollno: 1 
+}, { unique: true });
+
+module.exports = mongoose.model('FeedbackResponse', FeedbackResponseSchema);
